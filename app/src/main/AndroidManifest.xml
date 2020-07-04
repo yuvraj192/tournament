@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/applogo_background"
+        android:icon="@drawable/app_logo"
         android:label="GamingMonkey"
-        android:roundIcon="@drawable/applogo_background"
+        android:roundIcon="@drawable/app_logo"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity android:name=".homeActivity"></activity>
