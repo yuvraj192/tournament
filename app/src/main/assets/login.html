@@ -1,13 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>SignUp and Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="tailwind.css">
+    <link href="tailwind.css" rel="stylesheet">
     <script src="jquery.js"></script>
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="icon" href="logo.png" type="image/icon type">
+
 </head>
-<body class="bg-gray-800">
-    
+
+<body class="bg-gray-900">
+
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full">
+        <div>
+            <!-- <img class="mx-auto h-12 w-auto" src="workflow-mark-on-white.svg" alt="Workflow" /> -->
+            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                APP NAME
+            </h2>
+        </div>
+        <form class="mt-8" action="#" method="POST">
+            <input type="hidden" name="remember" value="true" />
+            <div class="rounded-md shadow-sm">
+                <div>
+                    <input aria-label="Phone number" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-600 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5 bg-gray-700" placeholder="Phone Number" id="pno" />
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <button onclick="signIN()" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-indigo active:bg-blue-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-300 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+                    GET OTP
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer class="text-gray-700 body-font fixed inset-x-0 bottom-0">
+
+</footer>
+
+
+<script type="text/javascript">
+		function signIN() {
+			var pno = document.querySelector("#pno").value
+
+			if (user == '') {
+				document.querySelector("#pno").style.border = "1px solid red"
+				document.querySelector("#pno").placeholder = "Please enter your Number"
+				return;
+			}else{
+
+			valid.performClick(pno)
+
+			}
+		}
+	</script>
+
 </body>
+
 </html>

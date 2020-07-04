@@ -7,6 +7,7 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             loginView.addJavascriptInterface(object : Any() {
                 @JavascriptInterface
                 fun performClick (strl: String?) {
-                    //Toast.makeText(this@MainActivity, strl, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, strl, Toast.LENGTH_SHORT).show()
 
                 }
             } , "valid" ) ;
