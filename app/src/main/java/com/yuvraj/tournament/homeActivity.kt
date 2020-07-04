@@ -1,6 +1,5 @@
 package com.yuvraj.tournament
 
-import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,31 +8,32 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class homeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
-        if(loginView != null){
-            val webSettings  = loginView!!.settings
-            loginView.settings.javaScriptEnabled = true
-            loginView!!.webViewClient = WebViewClient()
-            loginView!!.webChromeClient = WebChromeClient()
+        if(homeView != null){
+            val webSettings  = homeView!!.settings
+            homeView.settings.javaScriptEnabled = true
+            homeView!!.webViewClient = WebViewClient()
+            homeView!!.webChromeClient = WebChromeClient()
 
-            loginView.addJavascriptInterface(object : Any() {
+            homeView.addJavascriptInterface(object : Any() {
                 @JavascriptInterface
                 fun performClick (strl: String?) {
                     Toast.makeText(applicationContext, strl, Toast.LENGTH_SHORT).show()
-                    goHome()
+
                 }
             } , "valid" ) ;
 
-            loginView!!.loadUrl("file:///android_asset/login.html")
+            homeView!!.loadUrl("file:///android_asset/home.html")
 
 
-            loginView!!.webViewClient = object: WebViewClient(){
+            homeView!!.webViewClient = object: WebViewClient(){
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
                 }
@@ -44,17 +44,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun goHome(){
-        val intent = Intent(this, homeActivity::class.java)
-        //intent.putExtra("user", usr)
-        startActivity(intent);
-        finish()
-    }
-
     override fun onBackPressed() {
-        if(loginView!!.canGoBack()){
-            loginView!!.goBack()
+        if(homeView!!.canGoBack()){
+            homeView!!.goBack()
         }else{
             super.onBackPressed()
         }
