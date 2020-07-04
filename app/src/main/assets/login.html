@@ -26,7 +26,7 @@
             <input type="hidden" name="remember" value="true" />
             <div class="rounded-md shadow-sm">
                 <div>
-                    <input aria-label="Phone number" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-600 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5 bg-gray-700" placeholder="Phone Number" id="pno" />
+                    <input aria-label="Phone number" name="username" type="tel" required class="appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-600 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5 bg-gray-700" placeholder="Phone Number" id="pno" />
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
 		function signIN() {
 			var pno = document.querySelector("#pno").value
 
-			if (user == '') {
+			if (pno == '') {
 				document.querySelector("#pno").style.border = "1px solid red"
 				document.querySelector("#pno").placeholder = "Please enter your Number"
 				return;

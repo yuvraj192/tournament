@@ -43,4 +43,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    override fun onBackPressed() {
+        if(loginView!!.canGoBack()){
+            loginView!!.goBack()
+        }else{
+            super.onBackPressed()
+        }
+    }
 }
