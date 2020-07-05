@@ -24,9 +24,10 @@ class MainActivity : AppCompatActivity() {
 
             loginView.addJavascriptInterface(object : Any() {
                 @JavascriptInterface
-                fun performClick (strl: String?) {
-                    Toast.makeText(applicationContext, strl, Toast.LENGTH_SHORT).show()
-                    goHome()
+                fun performClick (pno: String?) {
+                    //Toast.makeText(applicationContext, pno, Toast.LENGTH_SHORT).show()
+                    //goHome()
+                    send(pno)
                 }
             } , "valid" ) ;
 
@@ -44,7 +45,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+private fun send(pno:String?)
+{
 
+}
     private fun goHome(){
         val intent = Intent(this, homeActivity::class.java)
         //intent.putExtra("user", usr)

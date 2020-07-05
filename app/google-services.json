@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "92250365468",
+    "firebase_url": "https://gamingmonkey-2e9e7.firebaseio.com",
+    "project_id": "gamingmonkey-2e9e7",
+    "storage_bucket": "gamingmonkey-2e9e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92250365468:android:df81a0243bd8e033f309d9",
+        "android_client_info": {
+          "package_name": "com.yuvraj.tournament"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92250365468-5vq2g2g4e4i769mvvjo0m2ec92lqjark.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yuvraj.tournament",
+            "certificate_hash": "ebe9e470fd24e395835c23ef70b1d258393e4eb1"
+          }
+        },
+        {
+          "client_id": "92250365468-18rp1rcq87nv6vfjnlrn66ofhpkkpqdc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn8ASsWNKK9WhvY6JP2J2rZOhgZumZW5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92250365468-18rp1rcq87nv6vfjnlrn66ofhpkkpqdc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
