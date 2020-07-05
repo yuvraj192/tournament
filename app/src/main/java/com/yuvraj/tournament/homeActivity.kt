@@ -1,12 +1,10 @@
 package com.yuvraj.tournament
 
 import android.graphics.Bitmap
+import android.net.http.SslError
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.JavascriptInterface
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,6 +45,9 @@ class homeActivity : AppCompatActivity() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
+                }
+                override public fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+                    handler?.proceed(); // Ignore SSL certificate errors
                 }
             }
 

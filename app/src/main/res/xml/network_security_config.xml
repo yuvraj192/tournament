@@ -2,7 +2,7 @@
 <network-security-config>
     <domain-config>
         <domain includeSubdomains="true">zapto.org</domain>
-        <domain-config cleartextTrafficPermitted="false">
+        <domain-config cleartextTrafficPermitted="true">
             <domain includeSubdomains="true">iotine.zapto.org</domain>
         </domain-config>
     </domain-config>
