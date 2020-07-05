@@ -60,6 +60,7 @@ private fun send(pno:String?)
         TimeUnit.SECONDS, // Unit of timeout
         this, // Activity (for callback binding)
         goHome()) // OnVerificationStateChangedCallbacks
+        //resetotp
 */
 
 }
