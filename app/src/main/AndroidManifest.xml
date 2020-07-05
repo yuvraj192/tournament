@@ -10,7 +10,9 @@
         android:label="GamingMonkey"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@drawable/network_security_config"
+        android:usesCleartextTraffic="true">
         <activity android:name=".homeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>

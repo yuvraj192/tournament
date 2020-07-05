@@ -120,23 +120,17 @@
     }
 
     function loadRooms(){
-        const xhr = new XMLHttpRequest();
-
-        // listen for `load` event
-        xhr.onload = () => {
-
-            // print JSON response
-            if (xhr.status >= 200 && xhr.status < 300) {
-                // parse JSON
-                const rooms = JSON.parse(xhr.responseText);
-                alert(rooms)
-            }
-        };
-
-        // open request
-        xhr.open('GET', 'https://iotine.zapto.org/gaming/rooms/');
-        // send rquest with JSON payload
-        xhr.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           const rooms = JSON.parse(xhttp.responseText);
+           alert(rooms)
+       }else{
+       alert("error")
+       }
+    };
+    xhttp.open("GET", "https://iotine.zapto.org/gaming/rooms/");
+    xhttp.send();
     }
 
     function addRooms(gig, ticon, tt){
