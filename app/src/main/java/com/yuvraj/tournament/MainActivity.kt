@@ -73,7 +73,7 @@ private fun send(pno:String?)
     override fun onStart(){
         super.onStart()
         if(mAuth.currentUser == null){
-            loginView!!.loadUrl("javascript:verify()")
+            //loginView!!.loadUrl("javascript:verify()")
         }
     }
 
