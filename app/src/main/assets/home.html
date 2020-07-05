@@ -118,5 +118,48 @@
         $(wht).show();
         $(hidewht).hide()
     }
+
+    function loadRooms(){
+        const xhr = new XMLHttpRequest();
+
+        // listen for `load` event
+        xhr.onload = () => {
+
+            // print JSON response
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // parse JSON
+                const rooms = JSON.parse(xhr.responseText);
+                alert(rooms)
+            }
+        };
+
+        // open request
+        xhr.open('GET', 'https://iotine.zapto.org/gaming/rooms/');
+        // send rquest with JSON payload
+        xhr.send();
+    }
+
+    function addRooms(gig, ticon, tt){
+        var roomTemplate = `<div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                <div class="h-full flex items-center border-gray-900 border p-4 rounded-lg">
+                    <img alt="team"
+                         class="w-16 h-8 bg-center flex-shrink-0 rounded-lg mr-4"
+                         src="PUBG.png">
+                    <div class="flex-grow">
+                        <h2 class="text-white title-font font-medium mb-2">${gig} <span class="bg-green-600 rounded-lg p-1 text-xs text-white float-right">OPEN</span></h2>
+                        <hr class="border-gray-900">
+                        <p class="text-gray-700 mt-2 text-xs items-center flex">
+                            <i class="material-icons">monetization_on</i>
+                            ₹10000 &nbsp;
+                            <i class="material-icons">phone_iphone</i>
+                            MOBILE &nbsp;
+                            <i class="material-icons">${ticon}</i>
+                            ${tt}
+                        </p>
+                    </div>
+                </div>
+            </div>`
+    }
+    loadRooms()
 </script>
 </html>
