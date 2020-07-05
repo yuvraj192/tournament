@@ -25,6 +25,7 @@
             </a>
         </div>
     </div>
+    <button onclick="loadRooms()" class="focus:outline-none text-red-600 bg-black float-right mr-5 mt-2"><i class="material-icons">refresh</i></button>
     <div class="container px-5 py-12 mx-auto upc" style="display:block;">
         <div class="flex flex-wrap -m-2"></div>
     </div>
@@ -63,13 +64,14 @@
     }
 
     function loadRooms() {
+    $(".upc").html("")
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const rooms = JSON.parse(xhttp.responseText);
-                rooms.forEach(room => {
-                    addRooms(room.gig_name, "person", room.teamType)
-                })
+                for(i = rooms.length - 1; i >=0; i--){
+                    addRooms(rooms[i].gig_name, "person", rooms[i].teamType)
+                }
             }
         };
         xhttp.open("GET", "https://iotine.zapto.org/gaming/rooms/");
