@@ -6,8 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".homeActivity">
 
-    <WebView
-        android:id="@+id/homeView"
+    <LinearLayout
+        android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <WebView
+            android:id="@+id/homeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#1a202c"
+        android:color="#fff"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        >
+        <WebView
+            android:id="@+id/btmBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 </RelativeLayout>

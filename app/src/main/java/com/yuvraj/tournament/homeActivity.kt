@@ -16,11 +16,17 @@ class homeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        if(homeView != null){
-            val webSettings  = homeView!!.settings
+        if(homeView != null || btmBar != null){
+            val homeSettings  = homeView!!.settings
+            val btmSettings = btmBar!!.settings
+
             homeView.settings.javaScriptEnabled = true
             homeView!!.webViewClient = WebViewClient()
             homeView!!.webChromeClient = WebChromeClient()
+
+            btmBar.settings.javaScriptEnabled = true
+            btmBar!!.webViewClient = WebViewClient()
+            btmBar!!.webChromeClient = WebChromeClient()
 
             homeView.addJavascriptInterface(object : Any() {
                 @JavascriptInterface
@@ -31,9 +37,20 @@ class homeActivity : AppCompatActivity() {
             } , "valid" ) ;
 
             homeView!!.loadUrl("file:///android_asset/home.html")
+            btmBar!!.loadUrl("file:///android_asset/btmbar.html")
 
 
             homeView!!.webViewClient = object: WebViewClient(){
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    super.onPageStarted(view, url, favicon)
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                }
+            }
+
+            btmBar!!.webViewClient = object: WebViewClient(){
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
                 }
