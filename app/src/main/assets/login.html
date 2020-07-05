@@ -27,9 +27,8 @@
             <div class="rounded-md shadow-sm">
                 <div>
 
-                    <input aria-label="Phone number" name="username" type="tel" required class="appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-800 placeholder-gray-700 rounded focus:outline-none focus:shadow-outline-blue focus:border-red-600 focus:z-10 sm:text-sm sm:leading-5 bg-black" placeholder="Phone Number"  style="display:block;" id="pno" />
-                    <input aria-label="OTP" name="OTP" type="text" style="display:none;" required class="appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-800 placeholder-gray-700 rounded focus:outline-none focus:shadow-outline-blue focus:border-red-600 focus:z-10 sm:text-sm sm:leading-5 bg-black" placeholder="OTP" id="otp" />
-                </div>
+                    <input aria-label="ingamename" name="username" type="text" required class="appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-800 placeholder-gray-700 rounded focus:outline-none focus:shadow-outline-blue focus:border-red-600 focus:z-10 sm:text-sm sm:leading-5 bg-black" placeholder="Your In Game Name"  style="display:block;" id="pno" />
+                    </div>
             </div>
 
             <div class="mt-6">
@@ -39,15 +38,7 @@
               <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
             </svg>
           </span>
-                    GET OTP
-                </button>
-                <button onclick="verifyOTP()" style="display:none;" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out" id="otp_btn">
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <svg class="h-5 w-5 text-red-500 group-hover:text-blue-300 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
-                    VERIFY
+                    GET STARTED
                 </button>
             </div>
         </form>
@@ -60,7 +51,7 @@
 
 
 <script type="text/javascript">
-//rndi h tu
+
 		function signIN() {
 			var pno = document.querySelector("#pno").value
 
@@ -71,20 +62,9 @@
 			}else{
 
 			valid.performClick(pno)
-			verify()
 
 			}
 		}
-
-		function verify(){
-		    //HOLD
-		    $('#pno').hide()
-		    $('#pno_btn').hide()
-		    $("#otp").show();
-		    $('#otp_btn').show()
-		}
-
-		function verifyOTP(){}
 	</script>
 
 </body>
