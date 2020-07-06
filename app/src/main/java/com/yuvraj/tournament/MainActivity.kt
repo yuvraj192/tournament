@@ -1,5 +1,4 @@
 package com.yuvraj.tournament
-
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -12,53 +11,52 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.TaskExecutors
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
 
+
 class MainActivity : AppCompatActivity() {
 
-    private var verificationId: String? = null
-    private val mAuth: FirebaseAuth? = null
+    private var mVerificationId: String? = null
+    //firebase auth object
+    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mAuth = FirebaseAuth.getInstance();
 
-        if(loginView != null){
-            val webSettings  = loginView!!.settings
+
+        if (loginView != null) {
+            val webSettings = loginView!!.settings
             loginView.settings.javaScriptEnabled = true
             loginView!!.webViewClient = WebViewClient()
             loginView!!.webChromeClient = WebChromeClient()
 
             loginView.addJavascriptInterface(object : Any() {
                 @JavascriptInterface
-                fun performClick (pno: String) {
+                fun performClick(pno: String) {
                     //Toast.makeText(applicationContext, pno, Toast.LENGTH_SHORT).show()
-
-                    sendVerificationCode("+91"+pno)
-
+                    sendVerificationCode(pno);
                 }
-            } , "valid" ) ;
+            }, "valid");
 
             loginView.addJavascriptInterface(object : Any() {
                 @JavascriptInterface
-                fun performClick (code: String) {
+                fun performClick(code: String) {
                     //Toast.makeText(applicationContext, pno, Toast.LENGTH_SHORT).show()
-                    verifyCode(code.trim())
+                    verifyVerificationCode(code);
                 }
-            } , "verify" ) ;
+            }, "verify");
 
             loginView!!.loadUrl("file:///android_asset/login.html")
 
 
-            loginView!!.webViewClient = object: WebViewClient(){
+            loginView!!.webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
                 }
@@ -68,52 +66,38 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
-    private fun verifyCode(code: String) {
-        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
-        signIn(credential)
-    }
-
-    private fun signIn(credential: PhoneAuthCredential) {
-        mAuth?.signInWithCredential(credential)
-            ?.addOnCompleteListener(OnCompleteListener<AuthResult?> { task ->
-                if (task.isSuccessful) {
-                    val intent =
-                        Intent(this@MainActivity, homeActivity::class.java)
-                    //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(
-                        this@MainActivity,
-                        task.exception!!.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
-    }
-
-    private fun sendVerificationCode(phonenumber: String) {
+    private fun sendVerificationCode(mobile: String) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            phonenumber,
+            "+91$mobile",
             60,
             TimeUnit.SECONDS,
             TaskExecutors.MAIN_THREAD,
-            mCallb
+            mCallbacks
         )
     }
 
-    private val mCallb: OnVerificationStateChangedCallbacks =
+
+    //the callback to detect the verification status
+    private val mCallbacks: OnVerificationStateChangedCallbacks =
         object : OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
+
+                //Getting the code sent by SMS
                 val code = phoneAuthCredential.smsCode
+
+                //sometime the code is not detected automatically
+                //in this case the code will be null
+                //so user has to manually enter the code
                 if (code != null) {
-                    verifyCode(code)
+                    verifyVerificationCode(code)
                 }
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
             }
 
             override fun onCodeSent(
@@ -121,9 +105,46 @@ class MainActivity : AppCompatActivity() {
                 forceResendingToken: ForceResendingToken
             ) {
                 super.onCodeSent(s, forceResendingToken)
-                verificationId = s
+
+                //storing the verification id that is sent to the user
+                mVerificationId = s
+                loginView.loadUrl("javascript:verify()")
             }
         }
+
+
+    private fun verifyVerificationCode(code: String) {
+        //creating the credential
+        val credential = PhoneAuthProvider.getCredential(mVerificationId!!, code)
+
+        //signing the user
+        signInWithPhoneAuthCredential(credential)
+    }
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        mAuth!!.signInWithCredential(credential)
+            .addOnCompleteListener(
+                this@MainActivity,
+                OnCompleteListener<AuthResult?> { task ->
+                    if (task.isSuccessful) {
+                        //verification successful we will start the profile activity
+                        val intent =
+                            Intent(this@MainActivity, homeActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    } else {
+
+                        //verification unsuccessful.. display an error message
+                        var message =
+                            "Somthing is wrong, we will fix it soon..."
+                        if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                            message = "Invalid code entered..."
+                            Toast.makeText(this@MainActivity , message, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
+    }
 
     private fun goHome(){
         val intent = Intent(this, homeActivity::class.java)

@@ -22,7 +22,6 @@
                 GAMING MONKEY
             </h2>
         </div>
-        <form class="mt-8" action="#" method="POST">
             <input type="hidden" name="remember" value="true" />
             <div class="rounded-md shadow-sm">
                 <div class="pnoin">
@@ -55,7 +54,6 @@
                    Verify
                 </button>
             </div>
-        </form>
     </div>
 </div>
 
@@ -65,7 +63,6 @@
 
 
 <script type="text/javascript">
-
 		function signIN() {
 			var pno = document.querySelector("#pno").value
 
@@ -74,17 +71,18 @@
 				document.querySelector("#pno").placeholder = "Please enter your Number"
 				return;
 			}else{
-            $(".pnobox").hide()
-            $(".pnoin").hide()
 			valid.performClick(pno)
-            $(".otpBox").show()
-            $(".otpin").show()
-
 			}
 		}
-
+function verify(){
+            $(".pnobox").hide()
+            $(".pnoin").hide()
+            $(".otpBox").show()
+            $(".otpin").show()
+}
 		function verifyOTP(){
 		    verify.performClick($(".code").val())
+		    return;
 		}
 	</script>
 
