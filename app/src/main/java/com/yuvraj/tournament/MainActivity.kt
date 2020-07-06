@@ -76,13 +76,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signIn(credential: PhoneAuthCredential) {
-        Toast.makeText(applicationContext, "HERE", Toast.LENGTH_LONG).show()
         mAuth?.signInWithCredential(credential)
             ?.addOnCompleteListener(OnCompleteListener<AuthResult?> { task ->
                 if (task.isSuccessful) {
                     val intent =
                         Intent(this@MainActivity, homeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
                     Toast.makeText(
