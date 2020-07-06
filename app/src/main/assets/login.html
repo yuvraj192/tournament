@@ -25,20 +25,34 @@
         <form class="mt-8" action="#" method="POST">
             <input type="hidden" name="remember" value="true" />
             <div class="rounded-md shadow-sm">
-                <div>
+                <div class="pnoin">
 
-                    <input aria-label="ingamename" name="username" type="text" required class="appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-800 placeholder-gray-700 rounded focus:outline-none focus:shadow-outline-blue focus:border-red-600 focus:z-10 sm:text-sm sm:leading-5 bg-black" placeholder="Your In Game Name"  style="display:block;" id="pno" />
+                    <input aria-label="Phone Number" name="pno" type="tel" required class="appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-800 placeholder-gray-700 rounded focus:outline-none focus:shadow-outline-blue focus:border-red-600 focus:z-10 sm:text-sm sm:leading-5 bg-black" placeholder="Phone Number"  style="display:block;" id="pno" />
                     </div>
+                <div class="otpin" style="display:none;">
+
+                    <input aria-label="otp" name="otp" type="text" required class="code appearance-none text-white rounded-none relative block w-full px-3 py-4 border border-gray-800 placeholder-gray-700 rounded focus:outline-none focus:shadow-outline-blue focus:border-red-600 focus:z-10 sm:text-sm sm:leading-5 bg-black" placeholder="OTP"  style="display:block;" />
+                </div>
             </div>
 
-            <div class="mt-6">
+            <div class="mt-6 pnobox" style="display:block;">
                 <button onclick="signIN()" style="display:block;" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out" id="pno_btn">
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">
             <svg class="h-5 w-5 text-red-500 group-hover:text-blue-300 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
             </svg>
           </span>
-                    GET STARTED
+                    GET OTP
+                </button>
+            </div>
+            <div class="mt-6 otpBox" style="display:none;">
+                <button onclick="verifyOTP()" style="display:block;" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-red-500 group-hover:text-blue-300 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+                   Verify
                 </button>
             </div>
         </form>
@@ -60,10 +74,17 @@
 				document.querySelector("#pno").placeholder = "Please enter your Number"
 				return;
 			}else{
-
+            $(".pnobox").hide()
+            $(".pnoin").hide()
 			valid.performClick(pno)
+            $(".otpBox").show()
+            $(".otpin").show()
 
 			}
+		}
+
+		function verifyOTP(){
+		    verify.performClick($(".code").val())
 		}
 	</script>
 
